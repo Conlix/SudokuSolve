@@ -1,0 +1,13 @@
+﻿  main.cpp
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(104,26): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(134,26): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(166,27): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(234,26): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(240,26): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(247,24): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(255,23): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(282,22): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(304,9): warning C4244: "Initialisierung": Konvertierung von "double" in "int", möglicher Datenverlust
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(305,9): warning C4244: "Initialisierung": Konvertierung von "double" in "int", möglicher Datenverlust
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\main.cpp(318,22): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+  Sudoku_Solve.vcxproj -> D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\Debug\Sudoku_Solve.exe
