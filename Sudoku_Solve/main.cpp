@@ -55,7 +55,7 @@ int main() {
 		if (f == 0) {
 			system("CLS");
 			print();
-			f == get_input();
+			f = get_input();
 		}
 	}
 	print();
@@ -65,7 +65,7 @@ int main() {
 }
 
 int inputfile() {
-	std::ifstream reader("input.txt");
+	std::ifstream reader("startinput.txt");
 	if (reader.is_open()) {
 		int ix, iy, iz;
 		while (reader >> ix >> iy >> iz) {
@@ -193,35 +193,26 @@ int checkfeald() {
 	return(found);
 }
 int get_input() {
+	int found = 1;
 	int ix = -1;
 	int iy = -1;
 	int iz = -1;
-	std::string end;
-	while (end != "end") {
-		ix = -1;
-		iy = -1;
-		iz = -1;
-		while (ix <= -1 || ix >= 9) {
-			std::cout << "X: ";
-			std::cin >> ix;
-		}
-		while (iy <= -1 || iy >= 9) {
-			std::cout << "Y: ";
-			std::cin >> iy;
-		}
-		while (iz <= -1 || iz >= 10) {
-			std::cout << "Z: ";
-			std::cin >> iz;
-		}
-		std::cin.clear();
-		std::cout << "end for end input and w for next input: ";
-		std::cin >> end;
-
-		changepos(ix, iy, iz);
-		system("CLS");
-		print();
+	while (ix <= -1 || ix >= 9) {
+		std::cout << "X: ";
+		std::cin >> ix;
 	}
-	return(1);
+	while (iy <= -1 || iy >= 9) {
+		std::cout << "Y: ";
+		std::cin >> iy;
+	}
+	while (iz <= -1 || iz >= 10) {
+		std::cout << "Z: ";
+		std::cin >> iz;
+	}
+	changepos(ix, iy, iz);
+	system("CLS");
+	print();
+	return(found);
 }
 int changepos(int x, int y, int z) {
 	diszeil = display[y];
