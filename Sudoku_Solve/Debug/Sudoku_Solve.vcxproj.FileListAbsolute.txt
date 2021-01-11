@@ -1,0 +1,2 @@
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\Debug\Sudoku_Solve.exe
+D:\Programming\github\C++\SudokuSolve\Sudoku_Solve\Debug\Sudoku_Solve.pdb
