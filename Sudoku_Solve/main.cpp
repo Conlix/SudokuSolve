@@ -37,8 +37,9 @@ int main() {
 	srand((unsigned)time(&t));
 	create();
 	inputfile();
-	for (int run = 0; run < 81; run++) {
-		int f = 0;
+	int f = 1;
+	while (f == 1) {
+		f = 0;
 		if (f == 0) {
 			f = checkfeald();
 		}
@@ -306,30 +307,10 @@ int changepos(int x, int y, int z) {
 	int ysrt = 0;
 	int xend = 0;
 	int yend = 0;
-	if (kx == 0) {
-		xsrt = 0;
-		xend = 3;
-	}
-	if (kx == 1) {
-		xsrt = 3;
-		xend = 6;
-	}
-	if (kx == 2) {
-		xsrt = 6;
-		xend = 9;
-	}
-	if (ky == 0) {
-		ysrt = 0;
-		yend = 3;
-	}
-	if (ky == 1) {
-		ysrt = 3;
-		yend = 6;
-	}
-	if (ky == 2) {
-		ysrt = 6;
-		yend = 9;
-	}
+	xsrt = kx * 3;
+	ysrt = ky * 3;
+	xend = xsrt + 3;
+	yend = ysrt + 3;
 	for (int zei = ysrt; zei < yend; zei++) {
 		zeile = fild[zei];
 		for (int k = xsrt; k < xend; k++) {
