@@ -52,6 +52,11 @@ int main() {
 		if (f == 0) {
 			f = checkpos();
 		}
+		if (f == 0) {
+			system("CLS");
+			print();
+			f == get_input();
+		}
 	}
 	print();
 	int end;
@@ -216,7 +221,7 @@ int get_input() {
 		system("CLS");
 		print();
 	}
-	return(0);
+	return(1);
 }
 int changepos(int x, int y, int z) {
 	diszeil = display[y];
