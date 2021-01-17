@@ -3,6 +3,8 @@
 #include <vector>
 #include <stdlib.h>
 #include <fstream>
+#include <Windows.h>
+#include <conio.h>
 
 std::vector<std::vector<int>> pspalt;
 std::vector<int> pspalt_k;
@@ -31,6 +33,11 @@ int checkline();
 int checkspalt();
 int checkpos();
 int inputfile();
+int bacprint();
+int inputprint();
+int backprint = 0;
+int azei = 0;
+int akes = 0;
 
 int main() {
 	time_t t;
@@ -54,8 +61,11 @@ int main() {
 		}
 		if (f == 0) {
 			system("CLS");
+			if (backprint == 1) {
+				bacprint();
+			}
 			print();
-			f = get_input();
+			f = inputprint();
 		}
 	}
 	print();
@@ -192,24 +202,105 @@ int checkfeald() {
 	}
 	return(found);
 }
-int get_input() {
-	int found = 1;
-	int ix = -1;
-	int iy = -1;
-	int iz = -1;
-	while (ix <= -1 || ix >= 9) {
-		std::cout << "X: ";
-		std::cin >> ix;
+int inputprint() {
+	int found = 0;
+	int set = 0;
+	int azahl = 0;
+	int press = 0;
+	while (found == 0) {
+		press = 0;
+		if (GetKeyState(VK_LEFT) & 0x8000) {
+			if (akes >= 1) {
+				akes--;
+				press = 1;
+			}
+		}
+		if (GetKeyState(VK_RIGHT) & 0x8000) {
+			if (akes <= 7) {
+				akes++;
+				press = 1;
+			}
+		}
+		if (GetKeyState(VK_UP) & 0x8000) {
+			if (azei >= 1) {
+				azei--;
+				press = 1;
+			}
+		}
+		if (GetKeyState(VK_DOWN) & 0x8000) {
+			if (azei <= 7) {
+				azei++;
+				press = 1;
+			}
+		}
+		//Get the Number
+		int c = 0;
+		switch ((c = _getch())) {
+		case '1':
+			azahl = 1;
+			found = 1;
+			break;
+		case '2':
+			azahl = 2;
+			found = 1;
+			break;
+		case '3':
+			azahl = 3;
+			found = 1;
+			break;
+		case '4':
+			azahl = 4;
+			found = 1;
+			break;
+		case '5':
+			azahl = 5;
+			found = 1;
+			break;
+		case '6':
+			azahl = 6;
+			found = 1;
+			break;
+		case '7':
+			azahl = 7;
+			found = 1;
+			break;
+		case '8':
+			azahl = 8;
+			found = 1;
+			break;
+		case '9':
+			azahl = 9;
+			found = 1;
+			break;
+		default:
+			azahl = 0;
+			break;
+		}
+		if (press == 1) {
+			system("CLS");
+			for (int z = 0; z < 9; z++) {
+				diszeil = display[z];
+				for (int k = 0; k < 9; k++) {
+					if (azei == z && akes == k) {
+						std::cout << "\033[32m" << diszeil[k] << "\033[0m" << " ";
+					}
+					else {
+						std::cout << diszeil[k] << " ";
+					}
+					if (k == 2 || k == 5) {
+						std::cout << " ";
+					}
+				}
+				std::cout << '\n';
+				if (z == 2 || z == 5) {
+					std::cout << '\n';
+				}
+			}
+			Sleep(150);
+		}
+
 	}
-	while (iy <= -1 || iy >= 9) {
-		std::cout << "Y: ";
-		std::cin >> iy;
-	}
-	while (iz <= -1 || iz >= 10) {
-		std::cout << "Z: ";
-		std::cin >> iz;
-	}
-	changepos(ix, iy, iz);
+	changepos(akes, azei, azahl);
 	system("CLS");
 	print();
 	return(found);
@@ -341,7 +432,12 @@ int print() {
 	for (int z = 0; z < 9; z++) {
 		diszeil = display[z];
 		for (int k = 0; k < 9; k++) {
-			std::cout << diszeil[k] << " ";
+			if (azei == z && akes == k) {
+				std::cout << "\033[32m" << diszeil[k] << "\033[0m" << " ";
+			}
+			else {
+				std::cout << diszeil[k] << " ";
+			}
 			if (k == 2 || k == 5) {
 				std::cout << " ";
 			}
@@ -402,4 +498,59 @@ int create() {
 	std::vector<int> iout = zout[8];
 	int out = iout[8];
 	return(out);
+}
+int bacprint() {
+	//fild
+	for (int z = 0; z < 9; z++) {
+		zeile = fild[z];
+		for (int k = 0; k < 9; k++) {
+			ziff = zeile[k];
+			for (int ifo = 0; ifo < ziff.size(); ifo++) {
+				std::cout << ziff[ifo];
+			}
+
+			if (k == 2 || k == 5) {
+				std::cout << "|";
+			}
+			else {
+				std::cout << " ";
+			}
+		}
+		std::cout << '\n';
+		if (z == 2 || z == 5) {
+			std::cout << '\n';
+		}
+	}
+	//fealds
+	std::cout << "Fealds" << std::endl;
+	for (int k = 0; k < 9; k++) {
+		fziff = fealds[k];
+		for (int n = 0; n < 9; n++) {
+			std::cout << fziff[n];
+		}
+		std::cout << " ";
+		if (k - 2 == ((k / 3) * 3) || k - 2 == ((k / 6) * 6)) {
+			std::cout << '\n';
+		}
+	}
+	//lines
+	std::cout << "Lines" << std::endl;
+	for (int l = 0; l < 9; l++) {
+		pline_k = pline[l];
+		for (int n = 0; n < 9; n++) {
+			std::cout << pline_k[n];
+		}
+		std::cout << '\n';
+	}
+	//spalt
+	std::cout << "Spalt" << std::endl;
+	for (int s = 0; s < 9; s++) {
+		pspalt_k = pspalt[s];
+		for (int n = 0; n < 9; n++) {
+			std::cout << pspalt_k[n];
+		}
+		std::cout << " ";
+	}
+	std::cout << '\n';
+	return(0);
 }
