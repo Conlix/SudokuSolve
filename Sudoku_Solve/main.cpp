@@ -27,7 +27,6 @@ std::vector<int> diszeil;
 int changepos(int x, int y, int z);
 int create();
 int print();
-int get_input();
 int checkfeald();
 int checkline();
 int checkspalt();
@@ -43,7 +42,15 @@ int main() {
 	time_t t;
 	srand((unsigned)time(&t));
 	create();
-	inputfile();
+	std::string input = "empty";
+	while(input != "read" && input != "start"){
+		std::cout << "For reading the Imputfile tippe [read] (Also if you wont to create the File)" << std::endl;
+		std::cout << "For not reading the Imputfile tippe [start]" << std::endl;
+		std::cin >> input;
+		if (input == "read") {
+			inputfile();
+		}
+	}
 	int f = 1;
 	while (f == 1) {
 		f = 0;
@@ -79,8 +86,11 @@ int inputfile() {
 	if (reader.is_open()) {
 		int ix, iy, iz;
 		while (reader >> ix >> iy >> iz) {
-			changepos(ix, iy, iz);
+			changepos(ix - 1, iy - 1, iz);
 		}
+	}
+	else {
+		std::ofstream write("startinput.txt");
 	}
 	print();
 	std::cout << '\n';
@@ -207,12 +217,16 @@ int inputprint() {
 	int set = 0;
 	int azahl = 0;
 	int press = 0;
+	//double left = time(0) + 200;
+	//double ct;
 	while (found == 0) {
 		press = 0;
-		if (GetKeyState(VK_LEFT) & 0x8000) {
+		//ct = time(0);
+		if (GetKeyState(VK_LEFT) & 0x8000/* && left <= ct*/) {
 			if (akes >= 1) {
 				akes--;
 				press = 1;
+				//left = time(0) + 1;
 			}
 		}
 		if (GetKeyState(VK_RIGHT) & 0x8000) {
@@ -298,7 +312,6 @@ int inputprint() {
 			}
 			Sleep(150);
 		}
-
 	}
 	changepos(akes, azei, azahl);
 	system("CLS");
