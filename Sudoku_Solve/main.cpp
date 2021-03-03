@@ -217,16 +217,12 @@ int inputprint() {
 	int set = 0;
 	int azahl = 0;
 	int press = 0;
-	//double left = time(0) + 200;
-	//double ct;
 	while (found == 0) {
 		press = 0;
-		//ct = time(0);
-		if (GetKeyState(VK_LEFT) & 0x8000/* && left <= ct*/) {
+		if (GetKeyState(VK_LEFT) & 0x8000) {
 			if (akes >= 1) {
 				akes--;
 				press = 1;
-				//left = time(0) + 1;
 			}
 		}
 		if (GetKeyState(VK_RIGHT) & 0x8000) {
