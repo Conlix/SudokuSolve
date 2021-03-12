@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string> 
 #include <time.h>
 #include <vector>
 #include <stdlib.h>
@@ -24,6 +25,11 @@ std::vector<int> ziff;
 std::vector<std::vector<int>> display;
 std::vector<int> diszeil;
 
+std::vector<std::vector<int>> ifile = {};
+
+int del();
+int writfile(int ix, int iy, int iz);
+
 int changepos(int x, int y, int z);
 int create();
 int print();
@@ -42,15 +48,17 @@ int main() {
 	time_t t;
 	srand((unsigned)time(&t));
 	create();
-	std::string input = "empty";
-	while(input != "read" && input != "start"){
-		std::cout << "For reading the Imputfile tippe [read] (Also if you wont to create the File)" << std::endl;
-		std::cout << "For not reading the Imputfile tippe [start]" << std::endl;
-		std::cin >> input;
-		if (input == "read") {
-			inputfile();
-		}
-	}
+	std::ofstream writer("input.txt");
+	writer << "";
+	//std::string input = "empty";
+	//while(input != "read" && input != "start"){
+	//	std::cout << "For reading the Imputfile tippe [read] (Also if you wont to create the File)" << std::endl;
+	//	std::cout << "For not reading the Imputfile tippe [start]" << std::endl;
+	//	std::cin >> input;
+	//	if (input == "read") {
+	//		inputfile();
+	//	}
+	//}
 	int f = 1;
 	while (f == 1) {
 		f = 0;
@@ -81,16 +89,17 @@ int main() {
 	std::cin >> end;
 }
 
+int writfile(int x,int y,int z) {
+	std::vector<int> inp = { x, y, z };
+	ifile.push_back(inp);
+	return(0);
+}
+
 int inputfile() {
-	std::ifstream reader("startinput.txt");
-	if (reader.is_open()) {
-		int ix, iy, iz;
-		while (reader >> ix >> iy >> iz) {
-			changepos(ix - 1, iy - 1, iz);
-		}
-	}
-	else {
-		std::ofstream write("startinput.txt");
+	std::vector<int> inp;
+	for (int i = 0; i < ifile.size(); i++) {
+		inp = ifile[i];
+		changepos(inp[0], inp[1], inp[2]);
 	}
 	print();
 	std::cout << '\n';
@@ -243,6 +252,11 @@ int inputprint() {
 				press = 1;
 			}
 		}
+		if (GetKeyState(VK_BACK) & 0x8000){
+			Sleep(10);
+			del();
+			press = 1;
+		}
 		//Get the Number
 		int c = 0;
 		switch ((c = _getch())) {
@@ -309,11 +323,44 @@ int inputprint() {
 			Sleep(150);
 		}
 	}
+	writfile(akes, azei, azahl);
 	changepos(akes, azei, azahl);
 	system("CLS");
 	print();
 	return(found);
 }
+
+int del() {
+	create();
+	ifile.pop_back();
+	inputfile();
+	int f = 1;
+	while (f == 1) {
+		f = 0;
+		if (f == 0) {
+			f = checkfeald();
+		}
+		if (f == 0) {
+			f = checkline();
+		}
+		if (f == 0) {
+			f = checkspalt();
+		}
+		if (f == 0) {
+			f = checkpos();
+		}
+		if (f == 0) {
+			system("CLS");
+			if (backprint == 1) {
+				bacprint();
+			}
+			print();
+			f = inputprint();
+		}
+	}
+	return(0);
+}
+
 int changepos(int x, int y, int z) {
 	diszeil = display[y];
 	diszeil[x] = z;
